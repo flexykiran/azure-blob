@@ -16,7 +16,7 @@ import java.nio.charset.Charset;
 @RestController
 public class AzureBlobController {
 
-   @Value("blob://test/myfile.txt")
+   @Value("blob://flexyblob/myfile.txt")
    private Resource blobFile;
 
    @GetMapping(value = "/")
@@ -28,6 +28,7 @@ public class AzureBlobController {
 
    @PostMapping(value = "/")
    public String writeBlobFile(@RequestBody String data) throws IOException {
+	  System.out.println("data:: "+data);
       try (OutputStream os = ((WritableResource) this.blobFile).getOutputStream()) {
          os.write(data.getBytes());
       }
